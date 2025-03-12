@@ -55,3 +55,15 @@ synchronized (this) {
 ```
 
 Esto hace que solo un hilo a la vez pueda modificar contador, pero puede generar bloqueos si hay muchas peticiones simultáneas.
+
+**Cuidado!!!! Si declaras la variable contador como estática**
+
+Es decir:
+
+```
+private static int contador = 0;
+```
+
+Esto significa que el valor de contador será compartido por todas las instancias de la clase UltimoAccesoIndexFilter. 
+
+Sin embargo, el problema de concurrencia persiste, porque múltiples hilos pueden acceder y modificar la variable al mismo tiempo sin sincronización adecuada
