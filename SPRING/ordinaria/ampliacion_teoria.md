@@ -35,6 +35,7 @@ En Spring Security, cuando trabajamos con autorización, existen dos conceptos i
 
 Si decides usar Authorities, los usuarios pueden tener permisos individuales sin depender de un rol predefinido.
 
+___
 
 # Spring Security para una aplicación MVC
 
@@ -42,6 +43,8 @@ Si decides usar Authorities, los usuarios pueden tener permisos individuales sin
 2. La autenticación se maneja con formularios de login en lugar de JWT o tokens.
 3. Debemos manejar sesiones de usuario en lugar de autenticación stateless.
 4. Spring Security automáticamente redirige a una página de login si un usuario no está autenticado.
+
+___
 
 # JWT
 
