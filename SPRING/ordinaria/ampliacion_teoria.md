@@ -60,3 +60,15 @@ ___
 - Se ejecuta en cada petición HTTP entrante.
 - Antes de que Spring Security determine si el usuario tiene acceso o no.
 - Si no hay token, la petición sigue sin autenticación (para permitir endpoints públicos).
+
+___
+
+# Spring Data JPA
+
+Spring Data JPA es un proyecto dentro del ecosistema de Spring que proporciona una implementación de la API JPA (Java Persistence API) estándar para la persistencia de datos en bases de datos relacionales y se superpone a Hibernate.
+
+JPA es una especificación estándar de Java para el mapeo objeto-relacional (ORM) y proporciona una forma fácil y consistente de interactuar con una base de datos relacional utilizando objetos Java. 
+
+Spring Data JPA proporciona una capa de abstracción adicional en la parte superior de la API JPA, lo que hace que sea aún más fácil trabajar con bases de datos relacionales que usando Hibernate solamente.
+
+
