@@ -23,7 +23,7 @@ Crea dos entidades: Usuario y Publicacion.
 
 ● Si un usuario se borra, deben eliminarse también todas sus publicaciones.
 
-● Se debe aplicar orphanRemoval = true.
+● Se elimina una publicación de la colección del usuario, debe borrarse la publicación porque se queda huérfana (orphanRemoval = true).
 
 ● Las publicaciones deben contener: contenido, fechaPublicacion, likes.
 
