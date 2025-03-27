@@ -32,6 +32,26 @@ Además, vamos a tener en cuenta que existirá el libro (la obra) y ejemplares d
 
 ![image](https://github.com/user-attachments/assets/9a03bc77-0000-4624-bf49-7aee0f55f75d)
 
+**Si tienes problema para crear la base de datos vacía desde la consola web:**
+```
+F:\_programs\h2\bin>java -cp h2-2.3.232.jar org.h2.tools.Shell -url jdbc:h2:~/Biblioteca -user sa
 
+Welcome to H2 Shell 2.3.232 (2024-08-11)
+Exit with Ctrl+C
+Commands are case insensitive; SQL statements end with ';'
+help or ?      Display this help
+list           Toggle result list / stack trace mode
+maxwidth       Set maximum column width (default is 100)
+autocommit     Enable or disable autocommit
+history        Show the last 20 statements
+quit or exit   Close the connection and exit
+
+sql> select 1;
+1
+1
+(1 row, 59 ms)
+sql> exit
+Connection closed
+```
 
 ## Modifica la lógica de la aplicación para incluir la entidad libro
