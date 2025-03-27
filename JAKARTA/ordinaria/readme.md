@@ -1,4 +1,4 @@
-# Versión 1
+# Versión 1: proyecto OrdinariaSolucion
 Sigue las instrucciones del pdf.
 
 Tienes los recursos iniciales.
