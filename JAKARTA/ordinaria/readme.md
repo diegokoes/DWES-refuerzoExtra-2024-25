@@ -54,4 +54,6 @@ sql> exit
 Connection closed
 ```
 
+**Ejecuta biblioteca.sql** para que se creen las tablas y campos de prueba.
+
 ## Modifica la lógica de la aplicación para incluir la entidad libro
