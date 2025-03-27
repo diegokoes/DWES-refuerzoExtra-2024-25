@@ -56,6 +56,11 @@ Connection closed
 
 **Ejecuta biblioteca.sql** para que se creen las tablas y campos de prueba.
 
+**No olvides añadir la password al usuario sa!!!!**
+```
+ALTER USER sa SET PASSWORD 'sa';
+```
+
 ## Estructura de vistas
 
 La estructura de vistas JSF
