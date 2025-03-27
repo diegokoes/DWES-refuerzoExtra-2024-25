@@ -28,7 +28,10 @@ Además, vamos a tener en cuenta que existirá el libro (la obra) y ejemplares d
 - linea_prestamo (relacionando prestamo y ejemplar con la fecha límite incluida)
 
 
-## Crea nueva base de datos
+## Crea nueva base de datos Biblioteca
+
+![image](https://github.com/user-attachments/assets/69734df6-376d-4dfb-b353-a6b8f4685264)
+
 
 
 
