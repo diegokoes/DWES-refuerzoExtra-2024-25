@@ -56,4 +56,27 @@ Connection closed
 
 **Ejecuta biblioteca.sql** para que se creen las tablas y campos de prueba.
 
-## Modifica la lógica de la aplicación para incluir la entidad libro
+## Estructura de vistas
+
+La estructura de vistas JSF
+
+
+### prestamos.xhtml (vista principal)
+- Lista de préstamos.
+- Botón “Nuevo préstamo”.
+- Botón “Devolver préstamo”.
+
+### nuevoPrestamo.xhtml
+- Selección de socio.
+- Lista de ejemplares disponibles (checkbox).
+- Botón “Guardar”.
+
+### devolverPrestamo.xhtml
+- Lista de ejemplares prestados para un préstamo.
+- Checkbox para marcar como devuelto.
+- Botón “Confirmar devolución”.
+
+### Modifica la lógica de la aplicación para incluir la entidad libro
+
+![image](https://github.com/user-attachments/assets/f765ef3b-f634-4a10-ac9c-48765fe8b738)
+
