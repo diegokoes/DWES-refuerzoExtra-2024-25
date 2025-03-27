@@ -3,7 +3,7 @@ Sigue las instrucciones del pdf.
 
 Tienes los recursos iniciales.
 
-# Versión 2 - Ampliación: entidad Libro
+# Versión 2: Ampliación - Gestión de libros y ejemplares prestados
 
 En Prestamo no vamos a trabajar directamente con el título del libro como un String, vas a crear una entidad Libro.
 
