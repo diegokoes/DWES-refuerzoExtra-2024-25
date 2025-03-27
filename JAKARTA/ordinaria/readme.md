@@ -30,8 +30,7 @@ Además, vamos a tener en cuenta que existirá el libro (la obra) y ejemplares d
 
 ## Crea nueva base de datos Biblioteca
 
-![image](https://github.com/user-attachments/assets/69734df6-376d-4dfb-b353-a6b8f4685264)
-
+![image](https://github.com/user-attachments/assets/9a03bc77-0000-4624-bf49-7aee0f55f75d)
 
 
 
