@@ -95,3 +95,9 @@ ___
 ![image](https://github.com/user-attachments/assets/fef257a3-3db2-41d0-bbd8-8912de0f2645)
 
 
+Por ejemplo si no responde el API Rest al que se conecta el proyecto Spring MVC:
+
+![image](https://github.com/user-attachments/assets/18016764-7ed2-4c46-a9d2-bbb319dc8d72)
+
+
+
