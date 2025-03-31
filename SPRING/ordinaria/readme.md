@@ -38,6 +38,56 @@ ___
 
 ¿Cómo obligar a que asignar el role sea obligatorio en User?
 
+ ### Validación en base de datos
+
+ Para garantizar la integridad aplicar una constraint personalizada o usar triggers en la base de datos.
+
+ ### Validación de formularios con anotaciones (@NotEmpty) + validación en el controlador con @Valid
+
+ Prueba a usar un DTO para el formulario así desacoplamos la lógica.
+
+ Implementa UserDTO que contenga @NotEmpty ...
+
+```
+import jakarta.validation.constraints.*;
+import java.util.Set;
+
+public class UserRegistrationDTO {
+
+    @NotBlank(message = "El nombre de usuario es obligatorio")
+    private String username;
+
+    @NotBlank(message = "La contraseña es obligatoria")
+    private String password;
+
+    @NotEmpty(message = "Debe seleccionar al menos un rol")
+    private Set<Long> roleIds;
+
+    .....
+   
+}
+
+```
+
+```
+<label>Roles:</label>
+    <div th:each="rol : ${listaRoles}">
+        <input type="checkbox"
+               th:value="${rol.id}"
+               th:field="*{roleIds}" />
+        <span th:text="${rol.nombre}"></span><br/>
+    </div>
+```
+
+```
+public String registrarUsuario(@Valid @ModelAttribute("usuario") UserRegistrationDTO dto,
+                                   BindingResult result,
+                                   Model model) {
+
+...
+
+}
+```
 ___
 
 ## Diferentes plantillas Thymeleaf para distintos errores
