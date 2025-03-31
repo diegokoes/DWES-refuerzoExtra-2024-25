@@ -24,6 +24,7 @@ Por ejemplo:
 
 ![image](https://github.com/user-attachments/assets/bb02a27c-5400-45fb-8908-2e0d106e3f9e)
 
+___
 
 ## Dar de alta usuario con lista de roles multiselección
 
@@ -31,10 +32,13 @@ Por ejemplo:
 
 Pendiente meter en base de datos más roles para las pruebas....
 
+___
 
 ## ¿Puedo dar de alta un usuario sin asignarle un role?
 
 ¿Cómo obligar a que asignar el role sea obligatorio en User?
+
+___
 
 ## 
 
