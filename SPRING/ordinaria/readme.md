@@ -40,5 +40,8 @@ ___
 
 ___
 
-## 
+## Diferentes plantillas Thymeleaf para distintos errores
+
+![image](https://github.com/user-attachments/assets/fef257a3-3db2-41d0-bbd8-8912de0f2645)
+
 
