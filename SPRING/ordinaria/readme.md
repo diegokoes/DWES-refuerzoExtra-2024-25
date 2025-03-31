@@ -100,4 +100,37 @@ Por ejemplo si no responde el API Rest al que se conecta el proyecto Spring MVC:
 ![image](https://github.com/user-attachments/assets/18016764-7ed2-4c46-a9d2-bbb319dc8d72)
 
 
+## Programación reactiva: no entra en examen
+
+En aplicaciones reactivas (WebFlux), lo ideal es trabajar todo el flujo de forma no bloqueante, es decir, sin llamar a .block(), ya que eso rompe la reactividad y detiene el hilo.
+
+```
+public Mono<EstudianteDTO> filtrar(String url) {
+    String token = authService.obtenerToken(); // Asumimos que esto también es reactivo
+    return webClientEstudiantes.get()
+            .uri(url)
+            .header("Authorization", "Bearer " + token)
+            .retrieve()
+            .bodyToMono(EstudianteDTO.class);
+}
+
+```
+
+Esto devuelve un Mono<EstudianteDTO> que todavía no ha ejecutado la petición. Solo se ejecutará cuando alguien se suscriba.
+
+**En un controlador reactivo:**
+
+```
+@GetMapping("/filtrar")
+public Mono<EstudianteDTO> filtrarEstudiante(@RequestParam String url) {
+    return estudianteService.filtrar(url);
+}
+
+```
+
+Todo fluye de manera asincrónica. Ideal para aplicaciones con muchas peticiones concurrentes.
+
+**Prueba a obtener el token de forma reactiva.**
+
+
 
