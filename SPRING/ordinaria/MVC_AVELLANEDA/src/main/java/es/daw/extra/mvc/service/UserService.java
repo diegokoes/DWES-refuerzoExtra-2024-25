@@ -28,15 +28,16 @@ public class UserService {
             user.setPassword(passwordEncoder.encode(user.getPassword()));
 
             // El rol por defecto se lee de un fichero de propiedades... pendiente!!!!
+            // Personalizar en una excepción propia... RoleNotFound (Existe una excepción del paquete Security si Role no existe????)
             Role role = roleRepository.findByName("ROLE_STUDENT")
                     .orElseThrow(() -> new RuntimeException("No role found"));
 
 
             // forma 1
-            //user.addRole(role);
+            user.addRole(role);
 
             // forma 2: utilizar el setter de la propiedad roles
-            user.setRoles(Set.of(role));
+            //user.setRoles(Set.of(role));
 
             userRepository.save(user);
 

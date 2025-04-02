@@ -34,6 +34,8 @@
 </head>
 <body>
 
+<!-- PENDIENTE!!!! HACER UNA VISTA PARA HACER FILTROS. UN FORMULARIO DONDE ELEGIR ESTUDIANTES POR NIA, ESCRIBIR EL NOMBRE, APELLIDO.... -->
+
 <div class="container">
   <div class="container-box">
     <h1 class="mb-3">Detalles del Estudiante</h1>
@@ -42,45 +44,47 @@
       <tbody>
       <tr>
         <th>NIA</th>
-
+        <td th:text="${estudiante.nia}"></td>
       </tr>
       <tr>
         <th>Nombre</th>
-
+        <td th:text="${estudiante.nombre}"></td>
         
       </tr>
       <tr>
         <th>Primer Apellido</th>
-
+        <td th:text="${estudiante.primerApellido}"></td>
         
       </tr>
       <tr>
         <th>Segundo Apellido</th>
-
+        <td th:text="${estudiante.segundoApellido}"></td>
         
       </tr>
       <tr>
         <th>Email</th>
-
+        <td th:text="${estudiante.email}"></td>
         
       </tr>
       <tr>
         <th>Móvil</th>
+        <td th:text="${estudiante.movil}"></td>
 
         
       </tr>
       <tr>
         <th>Dirección</th>
-
+        <td th:text="${estudiante.direccion}"></td>
         
       </tr>
       <tr>
         <th>Fecha de Nacimiento</th>
-
+        <td th:text="${estudiante.fechaNacimiento}"></td>
         
       </tr>
       <tr>
         <th>Edad</th>
+        <td th:text="${estudiante.edad}"></td>
 
         
       </tr>
@@ -89,7 +93,7 @@
 
     <br>
     <div class="mt-3">
-      <a class="btn btn-primary" >Volver a los informes</a>
+      <a class="btn btn-primary" th:href="@{/filtrar-estudiantes}">Volver a los informes</a>
     </div>
   </div>
 </div>

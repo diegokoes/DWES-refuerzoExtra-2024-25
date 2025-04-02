@@ -1,5 +1,6 @@
 package es.daw.extra.mvc.config;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,7 +17,18 @@ public class WebClientConfig {
     @Value("${api.estudiantes.auth.url}")
     private String authUrl;
 
+    @Value("${api.estudiantes}")
+    private String api;
+
     // Para practicar con múltiples webClient
+    @Bean
+    @Qualifier("webClientCorto")
+    public WebClient webClient(WebClient.Builder builder){
+        return builder
+                .baseUrl(api)
+                .build();
+    }
+
     @Bean
     public WebClient webClientAuth(WebClient.Builder builder){
         return builder

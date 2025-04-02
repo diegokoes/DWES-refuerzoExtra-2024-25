@@ -3,6 +3,7 @@ package es.daw.extra.mvc.service;
 import es.daw.extra.mvc.dto.AuthRequestDTO;
 import es.daw.extra.mvc.dto.AuthResponseDTO;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -20,10 +21,18 @@ public class AuthService {
     @Value("${api.estudiantes.auth.password}")
     private String password;
 
-    public AuthService(@Qualifier("webClientAuth") WebClient webClientAuth)  {
-        this.webClientAuth = webClientAuth;
+//    public AuthService(@Qualifier("webClientAuth") WebClient webClientAuth)  {
+//        this.webClientAuth = webClientAuth;
+//    }
+
+    @Autowired
+    public AuthService(@Qualifier("webClientAuth") WebClient webClientAuth2)  {
+        this.webClientAuth = webClientAuth2;
     }
 
+    // PENDIENTE GESTIONAR EXCEPCIÓN SI HAY PROBLEMAS AL CONECTAR AL API REST (WebClientRequestException)
+    // Crear excepción propia ConnectApiRestException... (creo y propago)
+    // Implementar un @ControllerAdvice (@ExceptionHandler de dicha excepción)
     public String obtenerToken() {
         System.out.println("**************");
         System.out.println("login: " + login);
