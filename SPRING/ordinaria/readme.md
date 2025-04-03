@@ -4,6 +4,8 @@ Sigue las instrucciones del pdf.
 
 Tienes los recursos iniciales.
 
+___
+
 # Ampliaciones
 
 ## Mensaje de error: ¿he puesto mal el user o la password?
@@ -99,6 +101,40 @@ Por ejemplo si no responde el API Rest al que se conecta el proyecto Spring MVC:
 
 ![image](https://github.com/user-attachments/assets/18016764-7ed2-4c46-a9d2-bbb319dc8d72)
 
+___
+
+## Gestionar excepción si hay problemas al conectar con el Api Rest (WebClientRequestException)
+
+```
+    @Autowired
+    public AuthService(@Qualifier("webClientAuth") WebClient webClientAuth2)  {
+        this.webClientAuth = webClientAuth2;
+    }
+
+    // PENDIENTE GESTIONAR EXCEPCIÓN SI HAY PROBLEMAS AL CONECTAR AL API REST (WebClientRequestException)
+    // Crear excepción propia ConnectApiRestException... (creo y propago)
+    // Implementar un @ControllerAdvice (@ExceptionHandler de dicha excepción)
+    public String obtenerToken() {
+        System.out.println("**************");
+        System.out.println("login: " + login);
+        System.out.println("password: " + password);
+        System.out.println("**************");
+
+        AuthRequestDTO request = new AuthRequestDTO(login,password);
+        AuthResponseDTO response = webClientAuth.post()
+                .header("Content-Type","application/json")
+                .bodyValue(request)
+                .retrieve()
+                .bodyToMono(AuthResponseDTO.class)
+                .block();
+
+        return response.getToken();
+
+    }
+
+```
+
+___
 
 ## Programación reactiva: no entra en examen
 
