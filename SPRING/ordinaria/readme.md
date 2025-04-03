@@ -1,4 +1,4 @@
-# VERSIÓN 1
+# VERSIÓN ORIGINAL
 
 Sigue las instrucciones del pdf.
 
