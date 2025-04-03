@@ -159,6 +159,20 @@ Que dichos endpoints requieran no solo autenticación, sino autorización basada
 
 ___
 
+## Plantillas para gestión de filtros
+
+Diseñar una vista Thymeleaf para realizar diferentes filtros. 
+
+Por ejemplo un formulario donde filtra estudiantes por nia, nombre, apellido...
+
+Pasar de esto:
+
+![image](https://github.com/user-attachments/assets/5827cfaa-04eb-4ae7-8db5-08ec74f9b87f)
+
+
+
+___
+
 ## Programación reactiva: no entra en examen
 
 En aplicaciones reactivas (WebFlux), lo ideal es trabajar todo el flujo de forma no bloqueante, es decir, sin llamar a .block(), ya que eso rompe la reactividad y detiene el hilo.
