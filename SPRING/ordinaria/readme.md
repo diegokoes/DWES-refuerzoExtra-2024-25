@@ -6,7 +6,7 @@ Tienes los recursos iniciales.
 
 ___
 
-# Ampliaciones
+# AMPLIACIONES: Mejoras y nuevas funcionalidades a añadir al proyecto
 
 ## Mensaje de error: ¿he puesto mal el user o la password?
 
@@ -133,6 +133,16 @@ ___
     }
 
 ```
+
+___
+
+## Llamar a otros endpoints del Api rest
+
+No solo consultar por estudiantes.
+
+Llamar a otros endpoints pOST, PUT... (dar de alta estudiante, modificar...)
+
+Que dichos endpoints requieran no solo autenticación, sino autorización basada en roles.
 
 ___
 
