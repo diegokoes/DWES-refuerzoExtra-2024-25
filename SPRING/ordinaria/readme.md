@@ -165,11 +165,14 @@ Diseñar una vista Thymeleaf para realizar diferentes filtros.
 
 Por ejemplo un formulario donde filtra estudiantes por nia, nombre, apellido...
 
-Pasar de esto:
+**Pasar de esto:**
 
 ![image](https://github.com/user-attachments/assets/5827cfaa-04eb-4ae7-8db5-08ec74f9b87f)
 
 
+**A esto:**
+
+![image](https://github.com/user-attachments/assets/41ee93f1-9f19-4a5d-ae90-3e93dda411e4)
 
 ___
 
