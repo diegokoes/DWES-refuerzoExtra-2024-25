@@ -176,6 +176,18 @@ Por ejemplo un formulario donde filtra estudiantes por nia, nombre, apellido...
 
 ___
 
+## API evaluaciones
+
+```
+/**
+ * PENDIENTE
+ * Hacer un servicio de evaluaciones
+ * Sería útil un servicio de transformación entity <-> dto????
+ * Meter Security!!!!!! definir reglas de autenticación y autorización
+ */
+```
+___
+
 ## Programación reactiva: no entra en examen
 
 En aplicaciones reactivas (WebFlux), lo ideal es trabajar todo el flujo de forma no bloqueante, es decir, sin llamar a .block(), ya que eso rompe la reactividad y detiene el hilo.
