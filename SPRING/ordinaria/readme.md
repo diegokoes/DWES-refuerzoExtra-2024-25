@@ -176,7 +176,7 @@ Por ejemplo un formulario donde filtra estudiantes por nia, nombre, apellido...
 
 ___
 
-## API evaluaciones
+## MEJORAS DEL API evaluaciones
 
 ```
 /**
@@ -186,6 +186,22 @@ ___
  * Meter Security!!!!!! definir reglas de autenticación y autorización
  */
 ```
+
+## Reglas de autenticación y autorización
+
+Endpoints:
+ 1. consultar cursos -> público
+ 2. evaluaciones detalle -> requiere autenticación
+ 3. promedio evaluaciones -> requiere ROLE_PROFESOR
+ 4. patch (modificar calificación de un estudiante en una evaluación concreta) -> requiere ROLE_ADMIN
+
+Pasos:
+- Necesitamos implementar el paquete Security.
+- Añadir en la BD las tablas Roles y usuarios.
+- Añadir los Entities...
+- Añadir en import.sql la creación de roles y usuarios de prueba.
+  
+Configurar SecurityConfig con las reglas de seguridad.
 ___
 
 ## Programación reactiva: no entra en examen
