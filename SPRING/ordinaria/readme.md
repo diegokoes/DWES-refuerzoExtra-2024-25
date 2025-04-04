@@ -197,8 +197,8 @@ Endpoints:
 
 Pasos:
 - Necesitamos implementar el paquete Security.
-- Añadir en la BD las tablas Roles y usuarios.
 - Añadir los Entities...
+- Añadir en la BD las tablas Roles y usuarios.... no!!! los entities si están bien etiquetados servirán para que Spring cree las tablas correctamente.
 - Añadir en import.sql la creación de roles y usuarios de prueba.
   
 Configurar SecurityConfig con las reglas de seguridad.
