@@ -75,6 +75,26 @@ ALTER USER sa SET PASSWORD 'sa';
 
 ```
 
+**Configura adecuadamente al archivo persistence.xml**
+
+```
+    <persistence-unit name="BibliotecaDS" transaction-type="JTA">
+        <jta-data-source>java:/BibliotecaDS</jta-data-source>
+
+        <class>es.daw.web.entities.User</class>
+        <class>es.daw.web.entities.Rol</class>
+        <class>es.daw.web.entities.Socio</class>
+        <class>es.daw.web.entities.Prestamo</class>
+        <class>es.daw.web.entities.Libro</class>
+        <class>es.daw.web.entities.Ejemplar</class>
+        <class>es.daw.web.entities.EjemplarPrestamo</class>
+        
+        <properties>
+            <property name="jakarta.persistence.schema-generation.database.action" value="validate"/>
+        </properties>
+    </persistence-unit>
+```
+
 ## Estructura de vistas
 
 La estructura de vistas JSF
