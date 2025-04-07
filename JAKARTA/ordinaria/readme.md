@@ -66,7 +66,7 @@ ALTER USER sa SET PASSWORD 'sa';
 **Configura el DataSource en standalone.xml de Wildfly**
 
 ```
-                <datasource jndi-name="java:/BibliotecaDS" pool-name="ClienteDS">
+                <datasource jndi-name="java:/BibliotecaDS" pool-name="BibliotecaDS">
                     <connection-url>jdbc:h2:file:~/biblioteca;AUTO_SERVER=TRUE</connection-url>
                     <driver-class>org.h2.Driver</driver-class>
                     <driver>h2</driver>
