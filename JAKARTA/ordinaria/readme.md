@@ -22,7 +22,7 @@ Además, vamos a tener en cuenta que existirá el libro (la obra) y ejemplares d
 
 ![modelo_entidad_relacion](https://github.com/user-attachments/assets/1ecab6d4-b8e9-4cc4-99e3-c848ff9cc715)
 
-- **socio:** relacionado OneToMany con ejemplar
+- **socio:** relacionado OneToMany con prestamo
 - **prestamo:** relacionado ManyToOne con socio
 - **libro:** relacionado OneToMany con ejemplar
 - **ejemplar:** relacionado ManyToOne con libro
