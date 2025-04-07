@@ -58,8 +58,21 @@ Connection closed
 **Ejecuta biblioteca.sql** para que se creen las tablas y campos de prueba.
 
 **No olvides añadir la password al usuario sa!!!!**
+
 ```
 ALTER USER sa SET PASSWORD 'sa';
+```
+
+**Configura el DataSource en standalone.xml de Wildfly**
+
+```
+                <datasource jndi-name="java:/BibliotecaDS" pool-name="ClienteDS">
+                    <connection-url>jdbc:h2:file:~/biblioteca;AUTO_SERVER=TRUE</connection-url>
+                    <driver-class>org.h2.Driver</driver-class>
+                    <driver>h2</driver>
+                    <security user-name="sa" password="sa"/>
+                </datasource>
+
 ```
 
 ## Estructura de vistas
