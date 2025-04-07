@@ -105,6 +105,50 @@ La estructura de vistas JSF
 - Botón “Nuevo préstamo”.
 - Botón “Devolver préstamo”.
 
+```
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <title>Gestión de Préstamos</title>
+</h:head>
+<h:body>
+    <h1>Listado de Préstamos</h1>
+
+    <h:dataTable value="#{prestamoBean.prestamos}" var="p" border="1">
+        <h:column>
+            <f:facet name="header">ID</f:facet>
+            #{p.id}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Socio</f:facet>
+            #{p.socio.nombre}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Fecha Préstamo</f:facet>
+            #{p.fechaPrestamo}
+        </h:column>
+        <h:column>
+            <h:form>
+                <h:commandLink value="Ver Detalles" action="#{prestamoBean.verDetalles(p)}" />
+            </h:form>
+        </h:column>
+    </h:dataTable>
+
+    <h:form>
+        <h:commandButton value="Nuevo Préstamo" action="nuevoPrestamo.xhtml?faces-redirect=true" />
+    </h:form>
+
+    <h:form>
+        <h:commandButton value="Devolver Préstamo" action="devolverPrestamo.xhtml?faces-redirect=true" />
+    </h:form>
+</h:body>
+</html>
+
+```
+
+
 ### nuevoPrestamo.xhtml
 - Selección de socio.
 - Lista de ejemplares disponibles (checkbox).
