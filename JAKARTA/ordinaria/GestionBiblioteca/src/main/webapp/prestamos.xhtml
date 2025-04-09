@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <title>Gestión de Préstamos</title>
+</h:head>
+<h:body>
+    <h1>Listado de Préstamos</h1>
+
+    <h:dataTable value="#{prestamoBean.prestamos}" var="p" border="1">
+        <h:column>
+            <f:facet name="header">ID</f:facet>
+            #{p.id}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Socio</f:facet>
+            #{p.socio.nombre}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Email Socio</f:facet>
+            #{p.socio.email}
+        </h:column>
+
+        <h:column>
+            <f:facet name="header">Fecha Préstamo</f:facet>
+            #{p.fechaPrestamo}
+        </h:column>
+        <h:column>
+            <h:form>
+                <!-- SALGA EN LA MISMA PÁGINA, ABAJO, UNA TABLA POR CADA EJEMPLAR CON EL CODIGO DE INVENTARIO
+                 DEL EJEMPLAR Y TODA LA INFO DEL LIBRO -->
+                <h:commandLink value="Ver Detalles" action="#{prestamoBean.verDetalles(p)}" />
+            </h:form>
+        </h:column>
+        <h:column>
+            <h:form>
+                <h:commandLink value="Devolver todos los libros del Préstamo" action="#{prestamoBean.devolver(p)}" />
+            </h:form>
+        </h:column>
+        <!-- NUEVA COLUMNA PARA DEVOLVER EL PRÉSTAMO -->
+    </h:dataTable>
+
+
+
+    <!-- Detalle del préstamo (es decir, lista de todos los ejemplares del préstamo) -->
+    <h:panelGroup rendered="#{not empty prestamoBean.ejemplaresDelPrestamo}">
+        <h2>Detalles del Préstamo con ID #{prestamoBean.prestamoSeleccionado.id} realizado por #{prestamoBean.prestamoSeleccionado.socio.nombre}</h2>
+        <h:dataTable value="#{prestamoBean.ejemplaresDelPrestamo}" var="ejemplarPrestamo" border="1">
+            <h:column>
+                <f:facet name="header">Código Ejemplar</f:facet>
+                #{ejemplarPrestamo.ejemplar.codigo_inventario}
+            </h:column>            
+            <h:column>
+                <f:facet name="header">Titulo</f:facet>
+                #{ejemplarPrestamo.ejemplar.libro.titulo}
+            </h:column>            
+            <h:column>
+                <f:facet name="header">Fecha límite de devolución</f:facet>
+                #{ejemplarPrestamo.fechaLimiteDevolucion}
+            </h:column>            
+            <h:column>
+                <f:facet name="header">Fecha real de devolución</f:facet>
+                #{ejemplarPrestamo.fechaRealDevolucion}
+            </h:column>   
+            <!-- PENDIENTE!!! SI EXISTE FECHA REAL DE DEV, ES QUE YA SE HA DEVUELTO EL EJEMPLAR Y EN VEZ DE SALIR EL BOTÓN DE DEVOLVER QUE SALGA UN MENSAJE -->
+             <!-- PENDIENTE!!! QUE FUNCIONE DEVOVLER UN EJEMPLAR!!!!1-->
+            <h:column>
+                <h:form>
+                    <h:commandButton value="Devolver ejemplar" action="#{ejemplarPrestamo.prueba()}" />
+                </h:form>
+            </h:column>   
+            <h:column>
+                <h:form>
+                    <h:commandButton value="Devolver ejemplar" action="#{prestamoBean.devolverEjemplar(ejemplarPrestamo)}" />
+                </h:form>
+            </h:column>   
+
+        </h:dataTable>
+    </h:panelGroup>
+
+    <h:form>
+        <h:commandButton value="Nuevo Préstamo" action="#{prestamoBean.nuevo}" />
+    </h:form>
+
+    <h:form>
+        <h:commandButton value="Devolver Préstamo" action="#{prestamoBean.devolver2}" />
+    </h:form>    
+
+</h:body>
+</html>

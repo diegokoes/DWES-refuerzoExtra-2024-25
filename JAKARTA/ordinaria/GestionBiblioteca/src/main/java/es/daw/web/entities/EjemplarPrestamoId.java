@@ -12,6 +12,9 @@ public class EjemplarPrestamoId {
         this.prestamoId = prestamoId;
     }
 
+    public EjemplarPrestamoId(){
+        
+    }
     
 
 }

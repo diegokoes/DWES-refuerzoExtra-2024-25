@@ -31,6 +31,14 @@ public class Ejemplar {
         return id;
     }
 
-    //......
+    public String getCodigo_inventario() {
+        return codigo_inventario;
+    }
+
+    public Libro getLibro() {
+        return libro;
+    }
+
+    
     
 }

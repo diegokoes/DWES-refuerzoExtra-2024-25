@@ -4,8 +4,10 @@ import java.time.LocalDate;
 import java.util.Set;
 
 import jakarta.annotation.Generated;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -23,10 +25,10 @@ public class Prestamo {
     private Long id;
 
     // --------------
-    // PENDIENTE!!! Añadir una tabla libros con el id, ISBN, Titulo, Autor, Año publicación, Editorial...
     // @Column(name="titulo_libro")
     // private String tituloLibro;
-    // PENDIENTE CONFIGURAR ENTRE PRESTAMOS Y EJEMPLAR LA RELACIÓN MANY TO MANY
+
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(
             name = "ejemplar_prestamo",
             joinColumns = @JoinColumn(name ="ejemplar_id"),
@@ -36,20 +38,15 @@ public class Prestamo {
     // --------------
 
 
-    //PENDIENTE!!! 
-    //@ManyToMany
-    //private Set<Libro> libros;
-
     @Column(name="fecha_prestamo")
     private LocalDate fechaPrestamo;
 
-    @Column(name="fecha_devolucion")
-    private LocalDate fechaDevolucion;
+    // @Column(name="fecha_devolucion")
+    // private LocalDate fechaDevolucion;
 
-    // RELACIÓN BIDECCIONAL....
+    // RELACIÓN BIDECCIONAL inversa....
     @ManyToOne
     @JoinColumn(name = "socio_id", nullable = false)
-    //@JoinColumn(name = "socio_kk", nullable = false) //para reproducir un error
     private Socio socio;
 
     @PrePersist
@@ -74,13 +71,6 @@ public class Prestamo {
         this.fechaPrestamo = fechaPrestamo;
     }
 
-    public LocalDate getFechaDevolucion() {
-        return fechaDevolucion;
-    }
-
-    public void setFechaDevolucion(LocalDate fechaDevolucion) {
-        this.fechaDevolucion = fechaDevolucion;
-    }
 
     public Socio getSocio() {
         return socio;
@@ -92,8 +82,7 @@ public class Prestamo {
 
     @Override
     public String toString() {
-        return "Prestamo [id=" + id + ", fechaPrestamo=" + fechaPrestamo
-                + ", fechaDevolucion=" + fechaDevolucion + "]";
+        return "Prestamo [id=" + id + ", fechaPrestamo=" + fechaPrestamo + "]";
     }
 
     

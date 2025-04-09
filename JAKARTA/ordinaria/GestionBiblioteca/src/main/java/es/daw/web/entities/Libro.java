@@ -26,7 +26,25 @@ public class Libro {
     @OneToMany(mappedBy = "libro", cascade = CascadeType.ALL)
     private Set<Ejemplar> ejemplares;
 
+    public String getIsbn() {
+        return isbn;
+    }
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public String getEditorial() {
+        return editorial;
+    }
+
+    public String getAutor() {
+        return autor;
+    }
+
     // ......
+
+    
 
 
 }
