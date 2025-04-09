@@ -45,7 +45,7 @@ Crea las entidades Curso y Estudiante.
 
 ● Se recomienda usar Set<> para evitar duplicados en la relación.
 
-## Ejercicio 4: relación OneToOne + OneToMay
+## Ejercicio 4: relación OneToMay (un autor puede tener más de un libro) + ManyToOne( muchos libros pertenecen a un mismo autor)
 
 Crea dos entidades: Autor y Libro.
 
