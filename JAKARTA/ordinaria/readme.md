@@ -137,12 +137,9 @@ La estructura de vistas JSF
     </h:dataTable>
 
     <h:form>
-        <h:commandButton value="Nuevo Préstamo" action="nuevoPrestamo.xhtml?faces-redirect=true" />
+        <h:commandButton value="Nuevo Préstamo" action="#{prestamoBean.nuevo}" />
     </h:form>
 
-    <h:form>
-        <h:commandButton value="Devolver Préstamo" action="devolverPrestamo.xhtml?faces-redirect=true" />
-    </h:form>
 </h:body>
 </html>
 
