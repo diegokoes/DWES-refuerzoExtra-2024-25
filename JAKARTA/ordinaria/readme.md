@@ -97,7 +97,9 @@ ALTER USER sa SET PASSWORD 'sa';
 
 ## Estructura de vistas
 
-La estructura de vistas JSF
+![image](https://github.com/user-attachments/assets/69a962c7-4a76-4589-9234-8ba44bf49653)
+
+___
 
 
 ### prestamos.xhtml (vista principal)
@@ -105,58 +107,52 @@ La estructura de vistas JSF
 - Botón “Nuevo préstamo”.
 - Botón “Devolver préstamo”.
 
-```
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
-<h:head>
-    <title>Gestión de Préstamos</title>
-</h:head>
-<h:body>
-    <h1>Listado de Préstamos</h1>
+La parte de diseño corre de tu cuenta ;-)
 
-    <h:dataTable value="#{prestamoBean.prestamos}" var="p" border="1">
-        <h:column>
-            <f:facet name="header">ID</f:facet>
-            #{p.id}
-        </h:column>
-        <h:column>
-            <f:facet name="header">Socio</f:facet>
-            #{p.socio.nombre}
-        </h:column>
-        <h:column>
-            <f:facet name="header">Fecha Préstamo</f:facet>
-            #{p.fechaPrestamo}
-        </h:column>
-        <h:column>
-            <h:form>
-                <h:commandLink value="Ver Detalles" action="#{prestamoBean.verDetalles(p)}" />
-            </h:form>
-        </h:column>
-    </h:dataTable>
+![image](https://github.com/user-attachments/assets/bee1368e-d974-4370-86d0-aa3f2f80245f)
 
-    <h:form>
-        <h:commandButton value="Nuevo Préstamo" action="#{prestamoBean.nuevo}" />
-    </h:form>
 
-</h:body>
-</html>
+___
+
+### VER DETALLE DEL PRÉSTAMO
+
+![image](https://github.com/user-attachments/assets/69549d58-8c64-4608-b6f4-1960d9837d98)
+
+### DEVOLVER TODOS LOS EJEMPLARES DE UN PRÉSTAMO
+
+En el listado, tenemos la opción de "Devolver todos los libros del Préstamo", de forma que por cada ejemplar prestado, se asigna la fecha real de devolución.
+
+Por ejemplo, Luis Pérez, ha devuelto todos los ejemplares y tienen su fecha real de devolución asignada (no vacía):
+
+![image](https://github.com/user-attachments/assets/897e04da-1d9d-41d1-87ea-835f82076602)
+
+
+### DEVOLVER EJEMPLARES SUELTOS DEL PRÉSTAMO, NO TODOS LOS EJEMPLARES DEL PRÉSTAMO 
+
+Está pendiente, que al ver los detalles de un préstamo, puedas seleccionar un único ejemplar y devolver ese ejemplar:
+
+![image](https://github.com/user-attachments/assets/2e785911-2f8b-44bf-9617-9d3cddae6837)
+
+Hemos implementado el código en **PrestamoBean** pero no se ejecuta el método devolverEjemplar por problemas con JSF... **NO LE DEDICAMOS MÁS TIEMPO!!!***:
 
 ```
+            <h:column>
+                    <h:commandButton value="Devolver ejemplar" action="#{prestamoBean.devolverEjemplar(ejemplarPrestamo)}" />
+            </h:column>   
+```
 
+___
 
-### nuevoPrestamo.xhtml
+### NUEVO PRÉSTAMO (PENDIENTE COMPLETAR LA SEMANA 28 DE MAYO)
 - Selección de socio.
 - Lista de ejemplares disponibles (checkbox).
 - Botón “Guardar”.
 
-### devolverPrestamo.xhtml
-- Lista de ejemplares prestados para un préstamo.
-- Checkbox para marcar como devuelto.
-- Botón “Confirmar devolución”.
+![image](https://github.com/user-attachments/assets/53737c88-3622-4280-a4eb-e4703c0946c5)
 
-### Modifica la lógica de la aplicación para incluir la entidad libro
+![image](https://github.com/user-attachments/assets/60e5528f-9624-4e65-ac74-a9e926459eaf)
 
-![image](https://github.com/user-attachments/assets/f765ef3b-f634-4a10-ac9c-48765fe8b738)
+
+
+
 
