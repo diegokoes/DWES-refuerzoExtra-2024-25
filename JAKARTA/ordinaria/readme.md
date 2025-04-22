@@ -152,13 +152,12 @@ Hemos implementado el código en **PrestamoBean** pero no se ejecuta el método 
 ___
 
 ### NUEVO PRÉSTAMO (PENDIENTE COMPLETAR LA SEMANA 28 DE MAYO)
+
 - Selección de socio.
 - Lista de ejemplares disponibles (checkbox).
 - Botón “Guardar”.
 
-![image](https://github.com/user-attachments/assets/53737c88-3622-4280-a4eb-e4703c0946c5)
-
-![image](https://github.com/user-attachments/assets/60e5528f-9624-4e65-ac74-a9e926459eaf)
+![image](https://github.com/user-attachments/assets/c138e3ff-f3b8-40a3-be7b-85fc89515164)
 
 
 
