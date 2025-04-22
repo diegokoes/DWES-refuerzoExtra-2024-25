@@ -109,14 +109,19 @@ ___
 
 La parte de diseño corre de tu cuenta ;-)
 
-![image](https://github.com/user-attachments/assets/bee1368e-d974-4370-86d0-aa3f2f80245f)
+![image](https://github.com/user-attachments/assets/5938b6dc-7fb9-4767-a725-f95599874308)
 
 
 ___
 
 ### VER DETALLE DEL PRÉSTAMO
 
-![image](https://github.com/user-attachments/assets/69549d58-8c64-4608-b6f4-1960d9837d98)
+Al ver el detalle de un préstamo, aparecen todos los ejemplares asociados:
+
+
+![image](https://github.com/user-attachments/assets/ec2c1190-dde1-4268-93a4-5b6609cb8e01)
+
+___
 
 ### DEVOLVER TODOS LOS EJEMPLARES DE UN PRÉSTAMO
 
@@ -124,14 +129,17 @@ En el listado, tenemos la opción de "Devolver todos los libros del Préstamo", 
 
 Por ejemplo, Luis Pérez, ha devuelto todos los ejemplares y tienen su fecha real de devolución asignada (no vacía):
 
-![image](https://github.com/user-attachments/assets/897e04da-1d9d-41d1-87ea-835f82076602)
+![image](https://github.com/user-attachments/assets/6fd58fa5-1e09-441b-8f05-31160827fb68)
 
+
+___
 
 ### DEVOLVER EJEMPLARES SUELTOS DEL PRÉSTAMO, NO TODOS LOS EJEMPLARES DEL PRÉSTAMO 
 
 Está pendiente, que al ver los detalles de un préstamo, puedas seleccionar un único ejemplar y devolver ese ejemplar:
 
-![image](https://github.com/user-attachments/assets/2e785911-2f8b-44bf-9617-9d3cddae6837)
+![image](https://github.com/user-attachments/assets/78c6c1a5-83df-40fc-9de4-5135e5de8fe7)
+
 
 Hemos implementado el código en **PrestamoBean** pero no se ejecuta el método devolverEjemplar por problemas con JSF... **NO LE DEDICAMOS MÁS TIEMPO!!!***:
 
