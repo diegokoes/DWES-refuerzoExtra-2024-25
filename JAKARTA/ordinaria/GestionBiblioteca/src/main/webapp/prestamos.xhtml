@@ -8,44 +8,44 @@
 <h:body>
     <h1>Listado de Préstamos</h1>
 
-    <h:dataTable value="#{prestamoBean.prestamos}" var="p" border="1">
-        <h:column>
-            <f:facet name="header">ID</f:facet>
-            #{p.id}
-        </h:column>
-        <h:column>
-            <f:facet name="header">Socio</f:facet>
-            #{p.socio.nombre}
-        </h:column>
-        <h:column>
-            <f:facet name="header">Email Socio</f:facet>
-            #{p.socio.email}
-        </h:column>
+    <h:form>
+        <h:dataTable value="#{prestamoBean.prestamos}" var="p" border="1">
+            <h:column>
+                <f:facet name="header">ID</f:facet>
+                #{p.id}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Socio</f:facet>
+                #{p.socio.nombre}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Email Socio</f:facet>
+                #{p.socio.email}
+            </h:column>
 
-        <h:column>
-            <f:facet name="header">Fecha Préstamo</f:facet>
-            #{p.fechaPrestamo}
-        </h:column>
-        <h:column>
-            <h:form>
-                <!-- SALGA EN LA MISMA PÁGINA, ABAJO, UNA TABLA POR CADA EJEMPLAR CON EL CODIGO DE INVENTARIO
-                 DEL EJEMPLAR Y TODA LA INFO DEL LIBRO -->
-                <h:commandLink value="Ver Detalles" action="#{prestamoBean.verDetalles(p)}" />
-            </h:form>
-        </h:column>
-        <h:column>
-            <h:form>
-                <h:commandLink value="Devolver todos los libros del Préstamo" action="#{prestamoBean.devolver(p)}" />
-            </h:form>
-        </h:column>
-        <!-- NUEVA COLUMNA PARA DEVOLVER EL PRÉSTAMO -->
-    </h:dataTable>
+            <h:column>
+                <f:facet name="header">Fecha Préstamo</f:facet>
+                #{p.fechaPrestamo}
+            </h:column>
+            <h:column>
+                
+                    <!-- SALGA EN LA MISMA PÁGINA, ABAJO, UNA TABLA POR CADA EJEMPLAR CON EL CODIGO DE INVENTARIO
+                    DEL EJEMPLAR Y TODA LA INFO DEL LIBRO -->
+                    <h:commandLink value="Ver Detalles" action="#{prestamoBean.verDetalles(p)}" />
+            </h:column>
+            <h:column>
+                    <h:commandLink value="Devolver todos los libros del Préstamo" action="#{prestamoBean.devolver(p)}" />
+            </h:column>
+            <!-- NUEVA COLUMNA PARA DEVOLVER EL PRÉSTAMO -->
+        </h:dataTable>
+    </h:form>
 
 
 
     <!-- Detalle del préstamo (es decir, lista de todos los ejemplares del préstamo) -->
     <h:panelGroup rendered="#{not empty prestamoBean.ejemplaresDelPrestamo}">
         <h2>Detalles del Préstamo con ID #{prestamoBean.prestamoSeleccionado.id} realizado por #{prestamoBean.prestamoSeleccionado.socio.nombre}</h2>
+        <h:form>
         <h:dataTable value="#{prestamoBean.ejemplaresDelPrestamo}" var="ejemplarPrestamo" border="1">
             <h:column>
                 <f:facet name="header">Código Ejemplar</f:facet>
@@ -66,26 +66,30 @@
             <!-- PENDIENTE!!! SI EXISTE FECHA REAL DE DEV, ES QUE YA SE HA DEVUELTO EL EJEMPLAR Y EN VEZ DE SALIR EL BOTÓN DE DEVOLVER QUE SALGA UN MENSAJE -->
              <!-- PENDIENTE!!! QUE FUNCIONE DEVOVLER UN EJEMPLAR!!!!1-->
             <h:column>
-                <h:form>
-                    <h:commandButton value="Devolver ejemplar" action="#{ejemplarPrestamo.prueba()}" />
-                </h:form>
+                    <h:commandButton value="Devolver ejemplar" action="#{prestamoBean.devolverEjemplar(ejemplarPrestamo)}" />
             </h:column>   
             <h:column>
-                <h:form>
-                    <h:commandButton value="Devolver ejemplar" action="#{prestamoBean.devolverEjemplar(ejemplarPrestamo)}" />
-                </h:form>
+                    <h:commandButton value="Ejecutar prueba" action="#{prestamoBean.prueba}" />
             </h:column>   
 
         </h:dataTable>
+        </h:form>
     </h:panelGroup>
 
     <h:form>
-        <h:commandButton value="Nuevo Préstamo" action="#{prestamoBean.nuevo}" />
+        <h:commandButton value="Nuevo Préstamo commandButton" action="nuevoPrestamo.xhtml?faces-redirect=true" />
     </h:form>
 
     <h:form>
-        <h:commandButton value="Devolver Préstamo" action="#{prestamoBean.devolver2}" />
-    </h:form>    
+        <h:commandLink value="Nuevo Préstamo commandLink" action="nuevoPrestamo.xhtml?faces-redirect=true" />
+    </h:form>
+
+    <h:link value="Nuevo Préstamo link" outcome="nuevoPrestamo.xhtml?faces-redirect=true"/>
+
+
+    <h:form>
+        <h:commandButton value="Ejecutar prueba" action="#{prestamoBean.prueba}" />
+    </h:form>
 
 </h:body>
 </html>

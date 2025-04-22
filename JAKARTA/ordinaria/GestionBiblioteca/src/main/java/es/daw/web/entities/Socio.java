@@ -121,10 +121,61 @@ public class Socio {
                 + ", fechaRegistro=" + fechaRegistro + "]";
     }
 
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((id == null) ? 0 : id.hashCode());
+        result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
+        result = prime * result + ((email == null) ? 0 : email.hashCode());
+        result = prime * result + ((telefono == null) ? 0 : telefono.hashCode());
+        result = prime * result + ((fechaRegistro == null) ? 0 : fechaRegistro.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Socio other = (Socio) obj;
+        if (id == null) {
+            if (other.id != null)
+                return false;
+        } else if (!id.equals(other.id))
+            return false;
+        if (nombre == null) {
+            if (other.nombre != null)
+                return false;
+        } else if (!nombre.equals(other.nombre))
+            return false;
+        if (email == null) {
+            if (other.email != null)
+                return false;
+        } else if (!email.equals(other.email))
+            return false;
+        if (telefono == null) {
+            if (other.telefono != null)
+                return false;
+        } else if (!telefono.equals(other.telefono))
+            return false;
+        if (fechaRegistro == null) {
+            if (other.fechaRegistro != null)
+                return false;
+        } else if (!fechaRegistro.equals(other.fechaRegistro))
+            return false;
+        return true;
+    }
+
     // ORDEN NATURAL ...
     // @Override
     // public int compareTo(Socio arg0) {
     //     return nombre.compareTo(arg0.nombre);
     // }
+
+    
 
 }

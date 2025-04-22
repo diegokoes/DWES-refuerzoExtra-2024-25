@@ -1,18 +1,31 @@
 package es.daw.web.cdi;
 
+import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 
 import es.daw.web.entities.EjemplarPrestamo;
 import es.daw.web.entities.Prestamo;
+import es.daw.web.entities.Socio;
 import es.daw.web.exceptions.JPAException;
 import es.daw.web.repositories.CrudRepositoryEjemplarPrestamo;
 import es.daw.web.repositories.CrudRepositoryPrestamo;
+import es.daw.web.repositories.CrudRepositorySocio;
+import jakarta.enterprise.context.SessionScoped;
 import jakarta.enterprise.inject.Model;
+import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
 
-@Model
-public class PrestamoBean {
+@Model 
+//@ViewScoped // objetivo, poder devolver un único ejemplar y no todos los ejemplares del préstamo
+//@SessionScoped
+public class PrestamoBean implements Serializable{
+
+    @Inject
+    private CrudRepositorySocio socioRepository;
 
     @Inject
     private CrudRepositoryPrestamo prestamoRepository;
@@ -26,6 +39,13 @@ public class PrestamoBean {
     private Set<EjemplarPrestamo> ejemplaresDelPrestamo;
 
     private Prestamo prestamoSeleccionado;
+
+
+    // PARA CREAR PRÉSTAMOS....
+    private Long socioIdSeleccionado;
+
+    private Map<Long, Boolean> seleccionados = new HashMap<>();
+
 
     // ------- MÉTODOS ---------
 
@@ -102,30 +122,75 @@ public class PrestamoBean {
      * @param ep
      * @return
      */
-    public String devolverEjemplar(){
+    public String devolverEjemplar(EjemplarPrestamo ep){
         System.out.println("********** DEVOLVER EJEMPLAR ********");
-        // System.out.println(ep);
-        // try {
+        System.out.println(ep);
+        try {
 
-        //         // Cambiar la fecha real de devolución
-        //         ep.setFechaRealDevolucion(LocalDate.now());
-        //         ejemplarPrestamoRepository.save(ep);
+                // Cambiar la fecha real de devolución
+                ep.setFechaRealDevolucion(LocalDate.now());
+                ejemplarPrestamoRepository.save(ep);
 
-        //         System.out.println("****** EJEMPLAR DEL PRÉSTAMO DEVUELTO ******");
-        //         System.out.println(ep);
-        //         System.out.println("********************************");
+                System.out.println("****** EJEMPLAR DEL PRÉSTAMO DEVUELTO ******");
+                System.out.println(ep);
+                System.out.println("********************************");
 
-        //         verDetalles(ep.getPrestamo());
+                verDetalles(ep.getPrestamo());
 
-        // } catch (JPAException e) {
-        //     // PENDIENTE DECIDIR QUÉ HAGO SI HAY ERROR!!!!
-        //     e.printStackTrace();
-        // }
+        } catch (JPAException e) {
+            // PENDIENTE DECIDIR QUÉ HAGO SI HAY ERROR!!!!
+            e.printStackTrace();
+        }
 
         return null; // permanecer en la misma página
 
 
     }    
+
+    /**
+     * Crear nuevo préstamo
+     * @return
+     */
+    public String save(){
+        System.out.println("******** CREAR PRÉSTAMO *******");
+
+        try {
+            // 1. Crear el entity préstamo
+            Prestamo prestamoNuevo = new Prestamo();
+            System.out.println("* Socio id seleccionado: "+socioIdSeleccionado);
+
+            Optional<Socio> socio = socioRepository.selectById(socioIdSeleccionado.intValue());
+
+            System.out.println("* Socio seleccionado: "+socio);
+
+            if (socio.isPresent())
+                prestamoNuevo.setSocio(socio.get());
+            
+            // 2. Asociar los ejemplares seleccionados al préstamo
+            for (Map.Entry<Long,Boolean> entry : seleccionados.entrySet()) {
+                System.out.println("* key: "+entry.getKey());
+                System.out.println("* Value:"+entry.getValue());
+            }
+
+            // Finalmente... salvar
+        
+            prestamoRepository.save(prestamoNuevo);
+        } catch (JPAException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+        // se cargan todos los préstamos y debería aparecer el  nuevo creado
+        return "prestamos.xhtml?faces-redirect=true";
+
+    }
+
+
+
+    public String prueba(){
+        System.out.println("*********** PROBANDO PROBANDO .....");
+        return null;
+    }
 
     /**
      * 
@@ -137,6 +202,23 @@ public class PrestamoBean {
 
     public Prestamo getPrestamoSeleccionado() {
         return prestamoSeleccionado;
+    }
+
+
+    public Map<Long, Boolean> getSeleccionados() {
+        return seleccionados;
+    }
+
+    public void setSeleccionados(Map<Long, Boolean> seleccionados) {
+        this.seleccionados = seleccionados;
+    }
+
+    public Long getSocioIdSeleccionado() {
+        return socioIdSeleccionado;
+    }
+
+    public void setSocioIdSeleccionado(Long socioIdSeleccionado) {
+        this.socioIdSeleccionado = socioIdSeleccionado;
     }
 
 

@@ -54,8 +54,13 @@ public class CrudRepositorySocio implements CrudRepository<Socio> {
 
     @Override
     public Optional<Socio> selectById(int id) throws JPAException {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'selectById'");
+        try{
+            Socio socio = em.find(Socio.class, id);
+            return Optional.ofNullable(socio);
+        }catch(Exception e){
+            throw new JPAException(JpaManagerCdi.getMessageError(e));
+        }
+
     }
 
     @Override
