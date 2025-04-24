@@ -41,6 +41,8 @@ spring.datasource.username=${DB_USERNAME}
 spring.datasource.password=${DB_PASSWORD}
 ```
 
+Spring Boot no carga automáticamente .env, pero puedes usar un plugin como dotenv-spring-boot.
+
 ## FORMA 2: application.properties con placeholders y configuración externa
 
 Puedes empaquetar tu app sin valores sensibles y tener una copia externa del archivo con los valores reales. Por ejemplo:
