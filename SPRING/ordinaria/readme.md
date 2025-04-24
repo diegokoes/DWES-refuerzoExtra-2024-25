@@ -204,6 +204,19 @@ Pasos:
 Configurar SecurityConfig con las reglas de seguridad.
 ___
 
+## Mejoras en  AuthController al registrar usuario
+
+Debéis hacer un endpoint /register nuevo con estas especificaciones:
+
+1. Especificarse un conjunto de roles.
+2. Devolver el token en el mismo endpoint.
+3. El username y password son obligatorios, pero los roles no. Validar!!!!
+4. Manejo de errores:
+  - Usuario ya existe: excepción personalizada llamada UsuarioYaExisteException y se devuelve un BadRequest con el mensaje de la excepción.
+  - Role no válido: lanzar la excepción IllegalArgumenException utilizada cuando quieres indicar que un argumento recibido no es válido.  un BadRequest con el mensaje de la excepción.
+
+___
+
 ## Programación reactiva: no entra en examen
 
 En aplicaciones reactivas (WebFlux), lo ideal es trabajar todo el flujo de forma no bloqueante, es decir, sin llamar a .block(), ya que eso rompe la reactividad y detiene el hilo.
