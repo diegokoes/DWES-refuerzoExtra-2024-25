@@ -85,27 +85,21 @@ public class JwtService {
      * @param userDetails
      * @return
      */
-    public String generateToken(Usuario userDetails) {
-    //public String generateToken(UserDetails userDetails) {
+    public String generateToken(UserDetails userDetails) {
         Map<String, Object> claims = new HashMap<>();
 
-        // ---------------
-        // ????????????
-//        Set<String> roles = userDetails.getAuthorities().stream()
-//                .map(GrantedAuthority::getAuthority)
-//                .collect(Collectors.toSet()); // Cambiamos a Set para evitar duplicados
-//
-//        claims.put("roles", roles);
-        // -----------
+        Set<String> roles = userDetails.getAuthorities().stream()
+                .map(GrantedAuthority::getAuthority)
+                .collect(Collectors.toSet()); // Cambiamos a Set para evitar duplicados
 
-        claims.put("roles", userDetails.getRoles());
+        claims.put("roles", roles);
 
         return Jwts.builder()
                 .claims(claims)
                 .subject(userDetails.getUsername())
                 .issuedAt(new Date(System.currentTimeMillis()))
                 //.expiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60)) // 1 hora
-                .expiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * Integer.parseInt(expiration))) // 1 hora
+                .expiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * Integer.parseInt(expiration)))
                 .signWith(getSigningKey(), Jwts.SIG.HS256)
                 .compact();
     }
@@ -137,8 +131,10 @@ public class JwtService {
      * @return
      */
     public boolean isTokenValid(String token, UserDetails userDetails) {
+        // Defensa extra
         final String username = extractUsername(token);
         return (username.equals(userDetails.getUsername())) && !isTokenExpired(token);
+        //return !isTokenExpired(token);
     }
 
     /**

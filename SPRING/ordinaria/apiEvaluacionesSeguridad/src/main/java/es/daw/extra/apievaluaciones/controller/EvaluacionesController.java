@@ -11,6 +11,7 @@ import es.daw.extra.apievaluaciones.repositories.NotaRepository;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -51,6 +52,7 @@ public class EvaluacionesController {
 
     }
 
+    @PreAuthorize("hasRole('PROFESOR')")
     @GetMapping("/{codigo}/promedio")
     public ResponseEntity<PromedioEvaluacionDTO> obtenerPromedioEvaluacionYCurso(
             @PathVariable String codigo){
@@ -90,7 +92,7 @@ public class EvaluacionesController {
 
     }
 
-
+    @PreAuthorize("hasAnyRole('ADMIN','PROFESOR')")
     @PatchMapping("/{codigo}/notas/{nia}")
     public ResponseEntity<NotaDTO> actualizarCalificacion(
             @PathVariable String codigo,

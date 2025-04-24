@@ -5,9 +5,11 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
@@ -27,6 +29,7 @@ public class JwtFilter extends OncePerRequestFilter {
                                     HttpServletResponse response,
                                     FilterChain filterChain) throws ServletException, IOException {
 
+        // OBTENER TODA LA CABECERA
 //        Enumeration<String> headers = request.getHeaderNames();
 //        while (headers.hasMoreElements()) {
 //            String header = headers.nextElement();
@@ -52,22 +55,28 @@ public class JwtFilter extends OncePerRequestFilter {
         System.out.println("Username: " + username);
 
         // Verifica que no haya ya una autenticación previa a la solicitud
+
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
 
             // Cargamos el usuario de la base de datos
             UserDetails userDetails = userDetailsService.loadUserByUsername(username);
 
-            // Verificar que el username en el token coincide con el del userDetail
+            if(jwtService.isTokenValid(token,userDetails)){
 
-            // PENDIENTE!!!
+                // Crear el objeto con el usuario autenticado y su roles
+                UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails,null,userDetails.getAuthorities());
+
+                // Asociar detalles de la solicitud (información adicionale del contexto de la socituda http, como ip...)
+                authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+
+                // Registramo al usuario como autenticado
+                SecurityContextHolder.getContext().setAuthentication(authentication);
+
+            }
 
         }
 
-
         filterChain.doFilter(request, response);
-
-
-
 
     }
 }

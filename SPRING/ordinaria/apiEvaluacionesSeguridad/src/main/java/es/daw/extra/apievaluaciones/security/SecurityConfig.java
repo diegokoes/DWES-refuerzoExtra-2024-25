@@ -20,10 +20,10 @@ import org.springframework.web.cors.CorsConfiguration;
 import java.util.List;
 
 /*
-consultar cursos -> público
-evaluaciones detalle -> requiere autenticación
-promedio evaluaciones -> requiere ROLE_PROFESOR
-patch (modificar calificación de un estudiante en una evaluación concreta) -> requiere ROLE_ADMIN
+    1. consultar cursos -> público
+    2. evaluaciones detalle -> requiere autenticación
+    3. promedio evaluaciones -> requiere ROLE_PROFESOR
+    4. patch (modificar calificación de un estudiante en una evaluación concreta) -> requiere ROLE_ADMIN y ROLE_PROFESOR
  */
 @Configuration
 @EnableMethodSecurity // Habilita @PreAuthorize y @PostAuthorize
@@ -76,6 +76,8 @@ public class SecurityConfig {
                         .requestMatchers("/auth/**","/h2-console/**").permitAll() // pública para login/register
                         //.requestMatchers("/cursos/**").permitAll()
                         .requestMatchers(HttpMethod.GET,"/cursos").permitAll()
+                        .requestMatchers(HttpMethod.GET,"/evaluaciones/detalles").authenticated()
+                        //.requestMatchers(HttpMethod.GET,"/evaluaciones/*/promedio").hasRole("PROFESOR") // * para un solo argumento variable
                         .anyRequest().authenticated()
                 )
                 .authenticationProvider(authenticationProvider())

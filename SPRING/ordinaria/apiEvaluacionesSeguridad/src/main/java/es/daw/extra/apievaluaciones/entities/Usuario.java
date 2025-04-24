@@ -3,6 +3,7 @@ package es.daw.extra.apievaluaciones.entities;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -16,7 +17,8 @@ import java.util.stream.Collectors;
 @Entity
 @Table(name = "users")
 @Getter
-@AllArgsConstructor
+@Setter
+//@AllArgsConstructor
 public class Usuario implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

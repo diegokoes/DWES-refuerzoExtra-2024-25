@@ -41,7 +41,7 @@ INSERT INTO roles (name) VALUES ('ROLE_PROFESOR');
 
 INSERT INTO users (username, password) VALUES ('admin', '$2a$10$Ey/H5tNIopwhtVYXQ76Ms.oeiol3A4NiG3/HJekFyKkmgLVbR1n1C');
 INSERT INTO users (username, password) VALUES ('user', '$2a$10$XVgKh.17he10CTo6Av57xOlSpnQWYxVJyshfkxjPKFLGTfth7FQZy');
-INSERT INTO users (username, password) VALUES ('profesor', '$2a$10$S1rIuC01K6VpFqPRre8PLu4AD1pKwKndOUy.t2NCrGG9J0W.X/mWy');
+INSERT INTO users (username, password) VALUES ('profesor', '$2a$10$Ey/H5tNIopwhtVYXQ76Ms.oeiol3A4NiG3/HJekFyKkmgLVbR1n1C');
 
 
 INSERT INTO users_roles (role_id,user_id) VALUES(2,1);
