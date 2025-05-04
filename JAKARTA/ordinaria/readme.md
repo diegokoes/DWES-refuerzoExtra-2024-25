@@ -177,6 +177,7 @@ Usando Spring, no hemos tenido este problema, pero con Jakarta y Wildfly (Hibern
 - Puede haber conflictos al persistir, borrar o hacer joins.
 - Hibernate no puede gestionar dos formas distintas de mapear la misma relación.
 
+La razón por la que con Spring ha funcionado las relaciones @ManyToMany con atributos intermedios debe ser porque Spring Boot oculta muchas cosas por defecto y hay conflictos que se resuelven como merges implícitos y gestión de entidades duplicadas en segundo plano.
 ___
 
 Subo una versión nueva del proyecto con los entity Ejemplar y Prestamo nuevos.
