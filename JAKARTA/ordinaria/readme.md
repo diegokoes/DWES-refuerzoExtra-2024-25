@@ -159,6 +159,116 @@ ___
 
 ![image](https://github.com/user-attachments/assets/c138e3ff-f3b8-40a3-be7b-85fc89515164)
 
+### Resolver problema fecha "FECHA_LIMITE_DEVOLUCION" no permite valores nulos
+
+El miércoles 30 de abril obteníamos el siguiente error al crear el préstamo, a pesar de que la FECHA_LIMITE_DEVOLUCION no era null:
+
+```
+ERROR [org.hibernate.engine.jdbc.spi.SqlExceptionHelper] (default task-1) La columna "FECHA_LIMITE_DEVOLUCION" no permite valores nulos (NULL)
+NULL not allowed for column "FECHA_LIMITE_DEVOLUCION"; SQL statement:
+insert into ejemplar_prestamo (ejemplar_id,prestamo_id) values (?,?)
+```
+
+Tras muchas pruebas y repasar JPA, el problema viene por la forma en que etiquetamos relaciones **manytomany** cuando la tabla intermedia tiene campos adicionales.
+
+Usando Spring, no hemos tenido este problema, pero con Jakarta y Wildfly (Hibernate 6) si lo tenemos.
+- Usamos @ManyToMany y @Entity sobre la misma tabla (ejemplar_prestamo).
+- Si JPA intenta cargar Prestamo.getEjemplaresPrestados(), ignorará completamente los atributos adicionales como fechaLimiteDevolucion.
+- Puede haber conflictos al persistir, borrar o hacer joins.
+- Hibernate no puede gestionar dos formas distintas de mapear la misma relación.
+
+___
+
+Subo una versión nueva del proyecto con los entity Ejemplar y Prestamo nuevos.
+
+Se ha eliminado la relación @ManyToMany y se ha creado la relación @OneToMany con EjemplarPrestamo.
+
+Además el código del método save de PrestamoBean ha cambiado:
+
+```
+    public String save(){
+        System.out.println("******** CREAR PRÉSTAMO *******");
+
+        try {
+            // 1. Crear el entity préstamo
+            Prestamo prestamoNuevo = new Prestamo();
+            System.out.println("* Socio id seleccionado: "+socioIdSeleccionado);
+
+            // PENDIENTE: Comprobar que el socioIdSeleccionado es distinto de null y no está vacío
+            // si es null o vacío redirigir a página de error  o misma página con un mensaje...
+
+            Optional<Socio> socio = socioRepository.selectById(socioIdSeleccionado.intValue());
+
+            System.out.println("* Socio seleccionado: "+socio);
+
+            if (socio.isPresent()){
+                prestamoNuevo.setSocio(socio.get());
+                // 2. Crear el préstamo en la base de datos para obtener su id
+                prestamoRepository.save(prestamoNuevo);
+            }
+
+            System.out.println("\t * Prestamo nuevo:"+prestamoNuevo);
+            
+            System.out.println("\n ******* LISTADO DE EJEMPLARES:");
+            // Asociar los ejemplares seleccionados al préstamo
+            for (Map.Entry<Long,Boolean> entry : seleccionados.entrySet()) {
+                System.out.println("* key: "+entry.getKey()); // Long (identificador)
+                System.out.println("* Value:"+entry.getValue()); // Boolean
+
+                // Si es true, es que se ha seleccionado
+                if (entry.getValue()){
+                    Optional<Ejemplar> ejOptional = ejemplarRepository.selectById(entry.getKey().intValue());
+
+                    if (ejOptional.isPresent()){
+                        Ejemplar ejemplar = ejOptional.get();
+
+                        // // Añadir el ejemplar al préstamo
+                        // prestamoNuevo.addEjemplar(ejemplar);
+
+                        // // Crear la entidad de la tabla intermedia PRESTAMO_EJEMPLAR
+                        // // Lo creo porque tiene campos intermedios!!!
+                        // EjemplarPrestamo ep = new EjemplarPrestamo(prestamoNuevo, ejemplar);
+
+                        // Crear relación intermedia con atributos
+                        EjemplarPrestamo ep = new EjemplarPrestamo(prestamoNuevo, ejemplar);
+
+                        // Agregar la relación a ambas entidades
+                        prestamoNuevo.addEjemplarPrestamo(ep);
+                        ejemplar.getPrestamos().add(ep); // Asegúrate de tener este set en `Ejemplar`
+
+
+                        System.out.println("\t ********** Ejemplar-Prestamo: "+ep);                        
+
+                        // Guardar el EjemplarPrestamo en base de datos
+                        //ejemplarPrestamoRepository.save(ep);
+
+                    }
+
+                    
+                }
+            }
+
+            // Finalmente... salvar
+        
+            prestamoRepository.save(prestamoNuevo);
+        } catch (JPAException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+
+            // PENDIENTE!!!! GESTIONAR EL ERROR...
+
+        }
+
+        // se cargan todos los préstamos y debería aparecer el  nuevo creado
+        return "prestamos.xhtml?faces-redirect=true";
+
+    }
+```
+
+
+
+
+
 
 
 
