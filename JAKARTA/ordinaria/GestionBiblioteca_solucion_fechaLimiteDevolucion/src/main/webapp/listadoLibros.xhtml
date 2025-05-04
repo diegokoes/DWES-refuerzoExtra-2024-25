@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Libros</title>
+    <!-- Enlace a la hoja de estilo de Bootstrap 5 -->
+    <link href="#{request.contextPath}/css/bootstrap.min.css" rel="stylesheet"/>
+</h:head>
+
+
+<h:body>
+
+    <h1>BIBLIOTECA BEAN #{bibliotecaBean.toString()}</h1>
+
+    <div class="container mt-5">
+        <h2 class="text-center">#{bibliotecaBean.titulo}</h2>
+    
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-4">
+
+                <h:dataTable value="#{bibliotecaBean.libros}" var="libro" styleClass="table table-bordered text-center">
+
+                    <h:column>
+                        <h:outputText value="#{libro}"/>
+                    </h:column>
+
+                </h:dataTable>
+
+            </div>
+        </div>
+    
+        <p class="text-center mt-4">
+            <a href="#{request.contextPath}/welcome.xhtml" class="btn btn-primary">Volver 1</a>
+            <h:link outcome="welcome" value="Volver 2" styleClass="btn btn-primary"/>
+        </p>
+
+    </div>
+    
+
+
+    <!-- Script de Bootstrap 5 -->
+    <script src="#{request.contextPath}/css/bootstrap.bundle.min.js"></script>
+    
+
+</h:body>
+
+</html>
+
