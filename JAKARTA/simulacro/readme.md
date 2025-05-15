@@ -15,7 +15,7 @@ Relación bidireccional (autor-dirección):
 private Direccion direccion;
 ```
 
-**En el entity Direccin:**
+**En el entity Direccion:**
 
 ```
 @OneToOne(mappedBy = "direccion")
