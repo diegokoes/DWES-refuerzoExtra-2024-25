@@ -11,15 +11,15 @@ Relación bidireccional (autor-dirección):
 **En el entity Autor:**
 ```
 @OneToOne
-    @JoinColumn(name = "direccion_id")
-    private Direccion direccion;
+@JoinColumn(name = "direccion_id")
+private Direccion direccion;
 ```
 
 **En el entity Direccin:**
 
 ```
 @OneToOne(mappedBy = "direccion")
-    private Autor autor;
+private Autor autor;
 ```
 
 ## Relación OneToMany / ManyToOne entre Libro y Autor
@@ -37,14 +37,15 @@ Relación bidireccional (autor-libro):
 
 ```
 @OneToMany(mappedBy = "autor", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Libro> libros;
+private Set<Libro> libros;
 ```
 
 **En el entity Libro:**
 
 ```
-@OneToMany(mappedBy = "libro", cascade = CascadeType.ALL)
-private Set<Ejemplar> ejemplares;
+@ManyToOne
+@JoinColumn(name = "autor_id")
+private Autor autor;
 ```
 
 
