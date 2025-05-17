@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Listado autores</title>
+    <link rel="stylesheet" type="text/css" href="#{request.contextPath}/css/bootstrap.min.css" />
+</head>
+<body class="container mt-4">
+
+   
+        <h1>Listado de autores</h1>
+
+    <h:dataTable value="#{autorBean.autores}" var="autor" styleClass="table table-striped table-bordered mt-3"
+    headerClass="table-primary" rowClasses="table-light,table-white">
+        <h:column>
+            <f:facet name="header">Nombre completo</f:facet>
+            #{autor.nombre}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Direccion</f:facet>
+            #{autor.direccion.calle}, #{autor.direccion.ciudad}
+        </h:column>
+        <h:column>
+
+            <f:facet name="header">Libros</f:facet>
+
+            <h:panelGroup rendered="#{not empty autor.libros}">
+                <h:dataTable value="#{autor.libros}" var="libro" styleClass="table table-striped table-bordered mt-3"
+                headerClass="table-primary" rowClasses="table-light,table-white">
+                    <h:column>
+                        <f:facet name="header">Título libro</f:facet>
+                        #{libro.titulo}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">ISBN</f:facet>
+                        #{libro.isbn}
+                    </h:column>
+                </h:dataTable>
+            </h:panelGroup>
+
+            <h:panelGroup rendered="#{empty autor.libros}">
+                <h:outputText value="El autor no tiene libros en la biblioteca"/>
+            </h:panelGroup>
+        
+
+
+        </h:column>
+        
+        <h:column>
+            <f:facet name="header">Editar dirección</f:facet>
+            <h:form>
+                <h:commandLink value="Editar" action="#{autorBean.editarDireccion(autor.id)}" />
+            </h:form>
+        </h:column>
+
+
+    </h:dataTable>
+
+
+    <a href="#{request.contextPath}/index.xhtml" class="btn btn-secondary mt-4">Volver al inicio del simulacro</a>
+
+</body>
+</html>

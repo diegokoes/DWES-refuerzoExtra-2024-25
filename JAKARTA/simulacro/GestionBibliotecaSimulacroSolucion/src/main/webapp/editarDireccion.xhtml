@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <title>Editar Dirección</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <!-- Enlace a Bootstrap -->
+    <link href="#{request.contextPath}/css/bootstrap.min.css" rel="stylesheet"/>
+</h:head>
+<h:body class="container mt-4">
+
+    <h:form styleClass="p-4 border rounded shadow bg-light">
+        <h1 class="text-center mb-4">Editar dirección de #{autorBean.nombreAutor}</h1>
+
+        <h:inputHidden value="#{autorBean.autorId}" />
+
+        <h:panelGrid columns="2" cellpadding="5" styleClass="table">
+
+            <h:outputLabel for="calle" value="Calle:" />
+            <h:inputText id="calle" value="#{autorBean.calle}" styleClass="form-control" />
+
+            <h:outputLabel for="ciudad" value="Ciudad:" />
+            <h:inputText id="ciudad" value="#{autorBean.ciudad}" styleClass="form-control" />
+
+            <h:outputLabel for="postal" value="Código postal:" />
+            <h:inputText id="postal" value="#{autorBean.codigoPostal}" styleClass="form-control" />
+        </h:panelGrid>
+
+        <div class="d-flex justify-content-center mt-4">
+            <h:commandButton value="Guardar" action="#{autorBean.guardarDireccion}" styleClass="btn btn-success me-2" />
+            <h:commandButton value="Cancelar" action="autores?faces-redirect=true" immediate="true" styleClass="btn btn-secondary" />
+        </div>
+    </h:form>
+
+    <!-- Script de Bootstrap -->
+    <script src="#{request.contextPath}/css/bootstrap.bundle.min.js"></script>
+</h:body>
+</html>

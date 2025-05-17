@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Login</title>
+    <!-- Enlace a la hoja de estilo de Bootstrap 5 -->
+    <link href="#{request.contextPath}/css/bootstrap.min.css" rel="stylesheet"/>
+</h:head>
+
+<h:body>
+
+    <h:panelGroup rendered="#{not empty error}">
+            <div class="jumbotron text-center">
+                <h2 class="error"><h:outputText value="#{error}"/></h2>
+            </div>
+    </h:panelGroup>    
+
+    <!-- Contenedor principal -->
+    <div class="container mt-5">
+
+        <!-- Mensaje de bienvenida -->
+        <h:panelGroup rendered="#{empty error}">
+            <div class="jumbotron text-center">
+                <h1 class="display-4"><h:outputText value="Bienvenido, #{loginBean.username}"/></h1>
+            </div>
+        </h:panelGroup>
+
+        <div class="d-flex justify-content-center">
+            <h:form>
+                <h:commandButton value="Cerrar Sesión" action="#{loginBean.logout}" />
+            </h:form>            
+        </div>
+
+        <br/>
+
+        <div class="container mt-4">
+            <div class="row justify-content-center">
+                <div class="col-md-6 text-center">
+                    <h2 class="mb-3">Guardar autor favorito</h2>
+                    
+                    <h:form class="p-4 border rounded shadow bg-light">
+                        <div class="mb-3">
+                            <h:outputLabel for="opcion" styleClass="form-label" value="Selecciona el autor" />
+
+                            <!-- PENDIENTE DE COMPLETAR -->
+                            <h:selectOneMenu value="#{preferenciaBean.autorSeleccionado}" styleClass="form-select">
+                                <f:selectItem itemValue="" itemLabel="-- Sin autor --"/>
+                                <f:selectItem itemValue="Gabriel Garcia Marquez" itemLabel="Gabriel Garcia Marquez"/>
+                                <f:selectItem itemValue="Isabel Allende" itemLabel="Isabel Allende"/>
+                                <f:selectItem itemValue="George Orwell" itemLabel="George Orwell"/>
+                                <f:selectItem itemValue="Julio Cortazar" itemLabel="Julio Cortazar"/>
+                            </h:selectOneMenu>
+
+                        </div>
+
+                        <h:commandButton value="Enviar" action="#{preferenciaBean.guardarAutorFavorito}" styleClass="btn btn-primary w-100"/>
+                        
+                    </h:form>
+
+                <!-- PENDIENTE: Panel de promoción: VÍA SESSION -->
+                <h:panelGroup rendered="#{not empty preferenciaBean.autorSeleccionado}">
+                    <div class="alert alert-info mt4 text-center">
+                        VÍA SESSION: ¿Te interesa mś sobre #{preferenciaBean.autorSeleccionado} ? Visita nuestra sección de novedades.    
+                    </div>
+                </h:panelGroup>
+
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+    <!-- Script de Bootstrap 5 -->
+    <script src="#{request.contextPath}/css/bootstrap.bundle.min.js"></script>
+
+</h:body>
+</html>

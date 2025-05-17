@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>DWES refuerzo extraordinaria</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet"/>
+</head>
+<body class="bg-light">
+
+    <div class="container my-5">
+        <header class="text-center mb-4">
+            <h1 class="display-4 text-primary">SIMULACRO JAKARTA EXTRAORDINARIA</h1>
+            <h2>PON TU NOMBRE AQUÍ!!!!</h2>
+        </header>
+
+        <!-- Ejercicio 1 -->
+        <div class="card mb-4 shadow-sm">
+            <div class="card-body">
+                <h2 class="card-title text-primary">EJERCICIO 1: Gestión de una biblioteca</h2>
+                <p>
+                    <a href="login.xhtml" class="btn btn-primary">Ingresa en la aplicación</a>
+                </p>
+
+                <!-- PENDIENTE: Panel de promoción: VÍA COOKIE -->
+                <h:panelGroup rendered="#{not empty cookie.autorFavorito.value}">
+                    <div class="alert alert-info mt4 text-center">
+                        VÍA COOKIE: ¿Te interesa mś sobre #{cookie.autorFavorito.value} ? Visita nuestra sección de novedades.    
+                    </div>
+                </h:panelGroup>
+
+                
+                <a href="autores-populares" class="btn btn-info">[Servlet + JSP] Ver autores populares</a>
+
+            </div>
+        </div>
+
+        <!-- Ejercicio 2 -->
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h2 class="card-title text-primary">EJERCICIO 2: Gestión de una biblioteca -  JPA</h2>
+
+                <div class="mb-4">
+                    <h3 class="text-secondary">CDI (controlador) + JSF (vista) + JPA (persistencia)</h3>
+                    <p>
+                        <a href="socios.xhtml" class="btn btn-outline-primary">Listar socios (ok)</a>
+                        <a href="alta.xhtml" class="btn btn-outline-secondary">Dar de alta un nuevo socio (ok)</a>
+                        <a href="prestamos.xhtml" class="btn btn-outline-secondary">Gestión de préstamos (ok)</a>
+                        <a href="autores.xhtml" class="btn btn-outline-secondary">Gestión de libros (pendiente)</a>
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="css/bootstrap.bundle.min.js"></script>
+</body>
+</html>

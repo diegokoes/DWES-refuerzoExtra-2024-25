@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Listado socios</title>
+    <link rel="stylesheet" type="text/css" href="#{request.contextPath}/css/bootstrap.min.css" />
+</head>
+<body class="container mt-4">
+
+   
+        <h1>Listado de socios ordenados por nombre descendente</h1>
+
+        <!-- PENDIENTE COMPLETAR -->
+    <h:dataTable value="#{socioBean.socios}" var="socio" styleClass="table table-striped table-bordered mt-3"
+    headerClass="table-primary" rowClasses="table-light,table-white">
+        <h:column>
+            <f:facet name="header">Nombre</f:facet>
+            #{socio.nombre}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Email</f:facet>
+            #{socio.email}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Teléfono</f:facet>
+            #{socio.telefono}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Fecha de registro</f:facet>
+            #{socio.fechaRegistro}
+        </h:column>
+        
+
+    </h:dataTable>
+
+
+    <a href="#{request.contextPath}/index.xhtml" class="btn btn-secondary mt-4">Volver al inicio del examen</a>
+
+</body>
+</html>
